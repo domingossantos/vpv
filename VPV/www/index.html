@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>My App</title>  
+  
+  <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
+  <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
+  <link rel="stylesheet" href="styles/app.css"/>
+
+  <script src="lib/onsen/js/angular/angular.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>
+
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+    angular.module('app', ['onsen']);
+
+    angular.module('app').controller('AppController', function($scope) {
+      $scope.doSomething = function() {
+        setTimeout(function() {
+          alert('tapped');
+        }, 100);
+      };
+
+      $scope.doConverter = function (){
+          var obamas = document.getElementById('obamas');
+          var taxa = document.getElementById('taxa');
+
+          var dilmas = document.getElementById('dilmas');
+          var valor = parseFloat(obamas.value) * (parseFloat(taxa.value) / 100);
+          valor = parseFloat(obamas.value) + valor;
+          valor = valor * 1.0636;
+          valor = valor * 2.35;
+          dilmas.value = valor.toFixed(2);
+      };
+    });
+  </script>
+
+  <style>
+    .tab {
+      line-height: 1;
+    }
+    .tab-icon {
+      font-size: 24px;
+      padding: 0;
+      margin: 0;
+      vertical-align: top;
+      line-height: 28px;
+    }
+    .tab-label {
+      line-height: 11px;
+      vertical-align: top;
+      font-size: 11px;
+    }
+
+    .profile-wrapper {
+      padding: 16px 10px 0 10px;
+    }
+
+    .profile-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+      background-color: #ccc;
+    }
+
+    .profile-name {
+      font-size: 18px;
+      padding: 4px 0 2px 0;
+    }
+
+    .profile-email {
+      font-size: 15px;
+      opacity: 0.4;
+    }
+
+    .switch--list-item {
+      margin-right: 0px;
+    }
+
+    .settings-header {
+      font-weight: 500;
+      font-size: 14px;
+      opacity: 0.4;
+      padding: 10px 0 0px 10px;
+      margin-bottom: -4px;
+    }
+
+    .settings-list {
+      margin-top: 10px;
+    }
+
+    .item {
+      padding: 10px;
+      line-height: 1;
+    }
+    .item-thum {
+      background-color: #ccc;
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      -webkit-border-radius: 100%;
+    }
+    .item-title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .item-desc {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.3;
+      margin: 4px 0 0 0;
+      padding: 0 30px 0 0;
+    }
+    .item-label {
+      font-size: 12px;
+      color: #999;
+      float: right;
+    }
+
+    .login-form {
+        text-align: center;
+        width: 80%;
+        margin: 60px auto 0;
+    }
+
+    input[type=email], input[type=password] {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        outline: none;
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .login-button {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .forgot-password {
+        display: block;
+        margin: 8px auto 0 auto;
+        font-size: 14px;
+    }
+  </style>
+  
+</head>
+
+<body ng-controller="AppController">    
+  
+  <ons-tabbar>
+    <ons-tabbar-item active="true" page="home.html">
+      <div class="tab">
+        <ons-icon icon="ion-home" class="tab-icon"></ons-icon>
+        <div class="tab-label">Home</div>
+      </div>
+    </ons-tabbar-item>
+
+    <ons-tabbar-item page="conversao.html">
+      <div class="tab">
+        <ons-icon icon="ion-loop" class="tab-icon"></ons-icon>
+        <div class="tab-label">Conversão</div>
+        <div>
+
+        </div>
+      </div>
+    </ons-tabbar-item>
+  </ons-tabbar>
+
+  <ons-template id="home.html">
+    <ons-navigator>
+      <ons-page>
+        <ons-toolbar>
+          <div class="left"><ons-toolbar-button ng-click="doSomething()"><ons-icon icon="ion-compose"></ons-icon></ons-toolbar-button></div>
+          <div class="center">Home</div>
+          <div class="right"></div>
+        </ons-toolbar>
+
+        <ons-row>
+            <ons-col>
+                <h2>Ola,</h2>
+                Este app é uma experiência pra ajudar que vai pra Miami e Orlando pela primeira vez.
+                <br>
+                Então agradeço se você, além de usar, ajudar outras pessoas com suas sugestões e dúvidas.
+                <br>
+                Grade abraço e boa viagem!
+            </ons-col>
+
+        </ons-row>
+
+
+      </ons-page>
+    </ons-navigator>
+  </ons-template>
+
+  <ons-template id="conversao.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="center">Conversão</div>
+      </ons-toolbar>
+        <div class="login-form">
+
+            <input type="number" step="0.01" class="text-input--underbar" placeholder="Em Obamas" value="" id="obamas">
+            <br>
+            <input type="number" step="0.01"  class="text-input--underbar" placeholder="Taxa" value="" id="taxa">
+            <br><br>
+            <ons-button modifier="large" class="login-button" ng-click="doConverter()">Convert</ons-button>
+            <br><br>
+            <div class="tab-label">Valor em Dilmas</div>
+            <input type="number" step="0.01"  class="text-input--underbar" id="dilmas">
+        </div>
+
+    </ons-page>
+
+
+    </ons-page>
+  </ons-template>
+
+</body>
+</html>
