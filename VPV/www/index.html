@@ -5,7 +5,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <title>My App</title>  
+  <title>Viajante de Primeira Viagem</title>
   
   <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
   <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
@@ -38,6 +38,14 @@
           valor = valor * 2.35;
           dilmas.value = valor.toFixed(2);
       };
+
+        $scope.doConverterGalao = function (){
+            var galao = document.getElementById('galao');
+            var litro = document.getElementById('litros');
+            var valor = parseFloat(galao.value) * 3.78
+
+            litro.value = valor.toFixed(2);
+        };
     });
   </script>
 
@@ -150,7 +158,7 @@
         font-size: 14px;
     }
   </style>
-  
+
 </head>
 
 <body ng-controller="AppController">    
@@ -172,6 +180,24 @@
         </div>
       </div>
     </ons-tabbar-item>
+      <ons-tabbar-item page="medidas.html">
+          <div class="tab">
+              <ons-icon icon="ion-pricetags" class="tab-icon"></ons-icon>
+              <div class="tab-label">Medidas</div>
+              <div>
+
+              </div>
+          </div>
+      </ons-tabbar-item>
+      <ons-tabbar-item page="abastecer.html">
+          <div class="tab">
+              <ons-icon icon="ion-speedometer" class="tab-icon"></ons-icon>
+              <div class="tab-label">Abastecer</div>
+              <div>
+
+              </div>
+          </div>
+      </ons-tabbar-item>
   </ons-tabbar>
 
   <ons-template id="home.html">
@@ -221,6 +247,35 @@
 
 
     </ons-page>
+  </ons-template>
+<ons-template id="medidas.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Medidas</div>
+        </ons-toolbar>
+
+    </ons-page>
+</ons-template>
+
+  <ons-template id="abastecer.html">
+      <ons-page>
+          <ons-toolbar>
+              <div class="center">Abastecer</div>
+          </ons-toolbar>
+          <div class="login-form">
+
+              <input type="number" step="0.01" class="text-input--underbar" placeholder="Galão" value="" id="galao">
+              <br><br>
+              <ons-button modifier="large" class="login-button" ng-click="doConverterGalao()">Manda Ver</ons-button>
+              <br><br>
+              <div class="tab-label">Valor em Litros</div>
+              <input type="number" step="0.01"  class="text-input--underbar" id="litros">
+          </div>
+
+      </ons-page>
+
+
+      </ons-page>
   </ons-template>
 
 </body>
