@@ -5,19 +5,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   
-  <title>My App</title>  
+  <title>Viajante de Primeira Viagem</title>
   
   <link rel="stylesheet" href="lib/onsen/css/onsenui.css">  
   <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">  
   <link rel="stylesheet" href="styles/app.css"/>
 
   <script src="lib/onsen/js/angular/angular.js"></script>    
-  <script src="lib/onsen/js/onsenui.js"></script>    
+  <script src="lib/onsen/js/onsenui.js"></script>
 
-  <script src="cordova.js"></script>
-  <script src="js/app.js"></script> 
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
 
-  <script>
+    <script>
     angular.module('app', ['onsen']);
 
     angular.module('app').controller('AppController', function($scope) {
@@ -27,9 +27,25 @@
         }, 100);
       };
 
-      $scope.doAlert = function (){
-        alert('Aqui foi');
+      $scope.doConverter = function (){
+          var obamas = document.getElementById('obamas');
+          var taxa = document.getElementById('taxa');
+
+          var dilmas = document.getElementById('dilmas');
+          var valor = parseFloat(obamas.value) * (parseFloat(taxa.value) / 100);
+          valor = parseFloat(obamas.value) + valor;
+          valor = valor * 1.0636;
+          valor = valor * 2.35;
+          dilmas.value = valor.toFixed(2);
       };
+
+        $scope.doConverterGalao = function (){
+            var galao = document.getElementById('galao');
+            var litro = document.getElementById('litros');
+            var valor = parseFloat(galao.value) * 3.78
+
+            litro.value = valor.toFixed(2);
+        };
     });
   </script>
 
@@ -115,8 +131,34 @@
       color: #999;
       float: right;
     }
+
+    .login-form {
+        text-align: center;
+        width: 80%;
+        margin: 60px auto 0;
+    }
+
+    input[type=email], input[type=password] {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        outline: none;
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    .login-button {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .forgot-password {
+        display: block;
+        margin: 8px auto 0 auto;
+        font-size: 14px;
+    }
   </style>
-  
+
 </head>
 
 <body ng-controller="AppController">    
@@ -138,6 +180,24 @@
         </div>
       </div>
     </ons-tabbar-item>
+      <ons-tabbar-item page="medidas.html">
+          <div class="tab">
+              <ons-icon icon="ion-pricetags" class="tab-icon"></ons-icon>
+              <div class="tab-label">Medidas</div>
+              <div>
+
+              </div>
+          </div>
+      </ons-tabbar-item>
+      <ons-tabbar-item page="abastecer.html">
+          <div class="tab">
+              <ons-icon icon="ion-speedometer" class="tab-icon"></ons-icon>
+              <div class="tab-label">Abastecer</div>
+              <div>
+
+              </div>
+          </div>
+      </ons-tabbar-item>
   </ons-tabbar>
 
   <ons-template id="home.html">
@@ -171,57 +231,51 @@
       <ons-toolbar>
         <div class="center">Conversão</div>
       </ons-toolbar>
+        <div class="login-form">
 
-      <ons-row class="profile-wrapper">
-        <ons-col width="60px" class="profile-image-wrapper">
-          <div class="profile-image"></div>
-        </ons-col>
-
-        <ons-col>
-          <div class="profile-name">Foobar</div>
-          <div class="profile-email">foobar@example.com</div>
-        </ons-col>
-
-      </ons-row>
-
-      <div class="settings-header">Share</div>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item>
-          Twitter
-          <ons-switch modifier="list-item"></ons-switch>
-        </ons-list-item>
-
-        <ons-list-item>
-          Facebook
-          <ons-switch modifier="list-item" checked></ons-switch>
-        </ons-list-item>
-      </ons-list>
-
-      <div class="settings-header">Others</div>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="chevron" ng-click="doSomething()">
-          Terms of Service
-        </ons-list-item>
-
-        <ons-list-item modifier="chevron" ng-click="doSomething()">
-          Privacy Policy
-        </ons-list-item>
-      </ons-list>
-
-      <br>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="tappable" ng-click="doSomething()">
-          <ons-icon icon="ion-log-out" style="opacity: 0.8"></ons-icon>
-          Sign out
-        </ons-list-item>
-      </ons-list>
-
-      <br>
+            <input type="number" step="0.01" class="text-input--underbar" placeholder="Em Obamas" value="" id="obamas">
+            <br>
+            <input type="number" step="0.01"  class="text-input--underbar" placeholder="Taxa" value="" id="taxa">
+            <br><br>
+            <ons-button modifier="large" class="login-button" ng-click="doConverter()">Convert</ons-button>
+            <br><br>
+            <div class="tab-label">Valor em Dilmas</div>
+            <input type="number" step="0.01"  class="text-input--underbar" id="dilmas">
+        </div>
 
     </ons-page>
+
+
+    </ons-page>
+  </ons-template>
+<ons-template id="medidas.html">
+    <ons-page>
+        <ons-toolbar>
+            <div class="center">Medidas</div>
+        </ons-toolbar>
+
+    </ons-page>
+</ons-template>
+
+  <ons-template id="abastecer.html">
+      <ons-page>
+          <ons-toolbar>
+              <div class="center">Abastecer</div>
+          </ons-toolbar>
+          <div class="login-form">
+
+              <input type="number" step="0.01" class="text-input--underbar" placeholder="Galão" value="" id="galao">
+              <br><br>
+              <ons-button modifier="large" class="login-button" ng-click="doConverterGalao()">Manda Ver</ons-button>
+              <br><br>
+              <div class="tab-label">Valor em Litros</div>
+              <input type="number" step="0.01"  class="text-input--underbar" id="litros">
+          </div>
+
+      </ons-page>
+
+
+      </ons-page>
   </ons-template>
 
 </body>
