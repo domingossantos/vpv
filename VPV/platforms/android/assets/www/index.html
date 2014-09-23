@@ -46,6 +46,14 @@
 
             litro.value = valor.toFixed(2);
         };
+
+        $scope.doConverterPol = function (){
+            var pol = document.getElementById('polegada');
+            var cm = document.getElementById('centimetro');
+            var valor = parseFloat(pol.value) * 2.54
+
+            cm.value = valor.toFixed(2);
+        };
     });
   </script>
 
@@ -198,6 +206,15 @@
               </div>
           </div>
       </ons-tabbar-item>
+      <ons-tabbar-item page="altura.html">
+          <div class="tab">
+              <ons-icon icon="ion-arrow-graph-up-right" class="tab-icon"></ons-icon>
+              <div class="tab-label">Altura</div>
+              <div>
+
+              </div>
+          </div>
+      </ons-tabbar-item>
   </ons-tabbar>
 
   <ons-template id="home.html">
@@ -209,19 +226,14 @@
           <div class="right"></div>
         </ons-toolbar>
 
-        <ons-row>
-            <ons-col>
+        <div class="login-form">
                 <h2>Ola,</h2>
                 Este app é uma experiência pra ajudar que vai pra Miami e Orlando pela primeira vez.
                 <br>
                 Então agradeço se você, além de usar, ajudar outras pessoas com suas sugestões e dúvidas.
                 <br>
-                Grade abraço e boa viagem!
-            </ons-col>
-
-        </ons-row>
-
-
+                Grande abraço e boa viagem!
+        </div>
       </ons-page>
     </ons-navigator>
   </ons-template>
@@ -270,6 +282,27 @@
               <br><br>
               <div class="tab-label">Valor em Litros</div>
               <input type="number" step="0.01"  class="text-input--underbar" id="litros">
+          </div>
+
+      </ons-page>
+
+
+      </ons-page>
+  </ons-template>
+
+  <ons-template id="altura.html">
+      <ons-page>
+          <ons-toolbar>
+              <div class="center">Altura</div>
+          </ons-toolbar>
+          <div class="login-form">
+
+              <input type="number" step="0.01" class="text-input--underbar" placeholder="Polegadas" value="" id="polegada">
+              <br><br>
+              <ons-button modifier="large" class="login-button" ng-click="doConverterPol()">Manda Ver</ons-button>
+              <br><br>
+              <div class="tab-label">Valor em Centimetros</div>
+              <input type="number" step="0.01"  class="text-input--underbar" id="centimetro">
           </div>
 
       </ons-page>

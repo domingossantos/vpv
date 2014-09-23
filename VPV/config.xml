@@ -1,12 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+<widget id="br.com.domsantos.vpv" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>VPV</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Viajante de Primeira Viagem
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="domsantos@gmail.com" href="http://www.domsantos.com.br">
+        Domingos Santos
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <!--
+        Platform Build Selection.
+        By default PhoneGap Build builds your application for every platform.
+        If you only want to build for certain platforms you can specify these
+        platforms with the gap:platform tag.
+
+        <gap:platform name="ios" />
+        <gap:platform name="android" />
+        <gap:platform name="webos" />
+        <gap:platform name="symbian" />
+        <gap:platform name="blackberry" />
+        <gap:platform name="winphone" />
+    -->
+    <gap:platform name="android" />
+    <gap:platform name="winphone" />
 </widget>
